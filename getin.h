@@ -1,3 +1,6 @@
 #include<iostream>
 #include<fstream>
-using namespace std;
+#include<stdlib.h>
+#include<time.h>
+#include<cstring>
+void getinput();
