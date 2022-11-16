@@ -3,9 +3,9 @@ using namespace std;
 #define random(a,b) (rand()%(b-a+1)+a);
 const int N = 100;
 
-void getinput() {
+void getinput(char file[]) {
     srand((int)time(0));
-    FILE* fp = fopen("yes.txt", "r");
+    FILE* fp = fopen(file, "r");
     if (fp == NULL)return;
     FILE* infp = fopen("input.txt", "w");
     char type[100][N];
@@ -50,7 +50,7 @@ void getinput() {
             }
             int res = random(a, b);
             fprintf(infp, "%d ", res);
-            cout << res << endl;
+            cout << "random is:"<<res << endl;
         }
         else if (strcmp(tx, "char") == 0) {//char
             int d = random(1, 2);

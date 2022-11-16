@@ -1,5 +1,9 @@
 #include"getout.h"
-
+#include<unistd.h>
+char path[20][100];
+char catalogue[20][20];
+int cpp_num=0;
+int cata_num=0;
 void getFiles(char pofix_path[]) {
     DIR *dir;
     struct dirent *ptr;
@@ -52,4 +56,7 @@ void getcatalogue(char pofix_path[]){
         }
     }
     closedir(dir);
+}
+bool have_output(const char* out_file){
+    return (access(out_file,F_OK)==0);
 }

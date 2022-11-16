@@ -1,4 +1,5 @@
 #include"getres.h"
+
 void getout(char file[],bool is){
     char rule[100];
     char qian[]="g++ ";
@@ -21,7 +22,7 @@ void getout(char file[],bool is){
     else system("./getres <input.txt >output.txt");
     return;
 }
-void writeres(char file1[],char file2[]){
+bool getres(){//1 eq,0 ieq
     FILE*one=fopen("output.txt","r");
     FILE*two=fopen("output1.txt","r");
     string ans1="",ans2="";
@@ -40,10 +41,27 @@ void writeres(char file1[],char file2[]){
         if(i==ans1.size())eq=1;
         else eq=0;
     }
-    FILE*res;
-    if(eq)res=fopen("equal.csv","w");
-    else res=fopen("inequal.csv","w");
-    fprintf(res,"%s,%s",file1,file2);
-    fputc('\n',res);
-    fclose(res);
+    return eq;
+}
+void writeres(char file1[],char file2[],bool eq){
+    if(eq){FILE*res=fopen("equal.csv","a");
+        fprintf(res,"%s,",file1);
+        fprintf(res,"%s",file2);
+        fputc('\n', res);
+        fclose(res);
+        cout<<"tiaoyong equal"<<endl;
+    }
+    else {FILE*res=fopen("inequal.csv","a");
+        fprintf(res,"%s,%s",file1,file2);
+        fputc('\n', res);
+        fclose(res);
+        cout<<"tiaoyong inequal"<<endl;
+    }
+}
+void writeab(char file[]){
+    FILE*ab=fopen("abnormal.csv","w");
+    fprintf(ab,"%s",file);
+    fputc('\n',ab);
+    cout<<"tiaoyong abnormal"<<endl;
+    fclose(ab);
 }
